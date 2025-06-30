@@ -10,6 +10,15 @@ clock = pygame.time.Clock()
 test_surface = pygame.Surface((100,200))
 test_surface.fill('Red')
 
+# Test 1.0
+new_surface = pygame.Surface((200, 400))
+new_surface.fill('Green')
+
+# Test 1.2
+overlay_surface = pygame.Surface((200, 200))
+overlay_surface.fill('Purple')
+
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -18,6 +27,8 @@ while True:
 
     #Block Image Transfer...one image on another        
     screen.blit(test_surface,(0,0))
+    screen.blit(new_surface,(100,50))
+    screen.blit(overlay_surface, (100,50))  # missed a comma
 
 
     #draw all the elements and update everything
