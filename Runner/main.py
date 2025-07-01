@@ -15,7 +15,8 @@ text_surface = test_font.render('RUNNER', False, 'Black')
 
 # 'Dynamic ' Surface
 snail_surface = pygame.image.load('Runner/graphics/snail/snail1.png').convert_alpha()
-snail_x_pos = 600
+snail_rect = snail_surface.get_rect(midbottom = (600,300))
+
 
 player_surface = pygame.image.load('Runner/graphics/Player/player_walk_1.png').convert_alpha()
 player_rect = player_surface.get_rect(midbottom = (80,300))
@@ -28,12 +29,19 @@ while True:
             exit()
 
     #Block Image Transfer...one image on another        
+
+    # Drawing the sky, floor and title
     screen.blit(sky_surface,(0, 0))
     screen.blit(ground_surface,(0,300))
     screen.blit(text_surface, (350, 50))
-    snail_x_pos -= 4
-    if snail_x_pos < -100: snail_x_pos = 900
-    screen.blit(snail_surface, (snail_x_pos,270))
+
+    # Drawing the snail and using geometric tricks to give it a looping effect
+    snail_rect.left -= 4
+    if snail_rect.left < -100: snail_rect.left = 900
+    screen.blit(snail_surface, snail_rect)
+
+    # Drawing the player
+    player_rect.left += 1
     screen.blit(player_surface, player_rect)
 
 
