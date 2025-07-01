@@ -46,7 +46,7 @@ while True:
 
     # Checking if a collison has indeed occured 
     if player_rect.colliderect(snail_rect):
-        print("Holy Shmoly!! Did you see that!! Did you See that Collision??!!")
+        print("Collision")
 
 
 
