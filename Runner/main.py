@@ -37,12 +37,16 @@ while True:
 
     # Drawing the snail and using geometric tricks to give it a looping effect
     snail_rect.left -= 4
-    if snail_rect.left < -100: snail_rect.left = 900
+    if snail_rect.left <= -50: snail_rect.left = 900
     screen.blit(snail_surface, snail_rect)
 
     # Drawing the player
     player_rect.left += 1
     screen.blit(player_surface, player_rect)
+
+    # Checking if a collison has indeed occured 
+    if player_rect.colliderect(snail_rect):
+        print("Holy Shmoly!! Did you see that!! Did you See that Collision??!!")
 
 
 
