@@ -6,26 +6,24 @@ pygame.init()
 screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
-test_font = pygame.font.Font('Runner/font/Pixeltype.ttf', 50)
 score_font = pygame.font.Font('Runner/font/Pixeltype.ttf', 50)
 
 # 'Static' surface
 sky_surface = pygame.image.load('Runner/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('Runner/graphics/ground.png').convert()
-text_surface = test_font.render('RUNNER', False, 'Black')
+score_surface = score_font.render('RUNNER', False, 'Black')
+score_rect = score_surface.get_rect(center = (400, 50))
 
 
 # 'Dynamic ' Surface
+
+# Snail
 snail_surface = pygame.image.load('Runner/graphics/snail/snail1.png').convert_alpha()
 snail_rect = snail_surface.get_rect(midbottom = (600,300))
 
-
+# Player
 player_surface = pygame.image.load('Runner/graphics/Player/player_walk_1.png').convert_alpha()
 player_rect = player_surface.get_rect(midbottom = (80,300))
-
-# Score
-score_surface = score_font.render(f'Score: {0}', False, 'Black')
-score_rect = score_surface.get_rect(center = (410,100))
 
 
 while True:
@@ -46,11 +44,12 @@ while True:
     # Drawing the sky, floor and title
     screen.blit(sky_surface,(0, 0))
     screen.blit(ground_surface,(0,300))
-    screen.blit(text_surface, (350, 50))
 
-    # Drawing the score
+    # Adding a background pad
     pygame.draw.rect(screen, 'Pink', score_rect)
-    screen.blit(score_surface, (score_rect))
+    pygame.draw.rect(screen, 'Pink', score_rect, 10)
+
+    screen.blit(score_surface, score_rect)
 
     # Drawing the snail and using geometric tricks to give it a looping effect
     snail_rect.left -= 4
@@ -71,7 +70,7 @@ while True:
     # if  player_rect.collidepoint((mouse_pos)):
     #     print(True)
 
-    
+    pygame.draw.line(screen, 'Red', (0,0), pygame.mouse.get_pos(), 20)
 
 
 
