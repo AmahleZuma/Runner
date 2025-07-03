@@ -49,6 +49,7 @@ while True:
     screen.blit(text_surface, (350, 50))
 
     # Drawing the score
+    pygame.draw.rect(screen, 'Pink', score_rect)
     screen.blit(score_surface, (score_rect))
 
     # Drawing the snail and using geometric tricks to give it a looping effect
