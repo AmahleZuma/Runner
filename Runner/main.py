@@ -70,7 +70,7 @@ while True:
     # if  player_rect.collidepoint((mouse_pos)):
     #     print(True)
 
-    pygame.draw.line(screen, 'Red', (0,0), pygame.mouse.get_pos(), 20)
+    pygame.draw.ellipse(screen, 'Red', player_rect)
 
 
 
