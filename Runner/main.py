@@ -11,7 +11,7 @@ score_font = pygame.font.Font('Runner/font/Pixeltype.ttf', 50)
 # 'Static' surface
 sky_surface = pygame.image.load('Runner/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('Runner/graphics/ground.png').convert()
-score_surface = score_font.render('RUNNER', False, 'Black')
+score_surface = score_font.render('RUNNER', False, (64, 64, 64))
 score_rect = score_surface.get_rect(center = (400, 50))
 
 
@@ -46,8 +46,8 @@ while True:
     screen.blit(ground_surface,(0,300))
 
     # Adding a background pad
-    pygame.draw.rect(screen, 'Pink', score_rect)
-    pygame.draw.rect(screen, 'Pink', score_rect, 10)
+    pygame.draw.rect(screen, '#c0e8ec', score_rect)
+    pygame.draw.rect(screen, '#c0e8ec', score_rect, 10)
 
     screen.blit(score_surface, score_rect)
 
@@ -60,6 +60,11 @@ while True:
     screen.blit(player_surface, player_rect)
 
 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        print('jump')
+
+
     # Checking if a collison has indeed occured 
     # Specifically if the rectangles are overlapping...this method is a massive issue for health bar related functions
     # if player_rect.colliderect(snail_rect):
@@ -70,8 +75,9 @@ while True:
     # if  player_rect.collidepoint((mouse_pos)):
     #     print(True)
 
-    pygame.draw.ellipse(screen, 'Red', player_rect)
-
+    # Drawing circles for vibes
+    # pygame.draw.ellipse(screen, 'Red', player_rect)
+    # pygame.draw.ellipse(screen, 'Red', snail_rect)
 
 
     #draw all the elements and update everything
