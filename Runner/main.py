@@ -11,9 +11,9 @@ score_font = pygame.font.Font('Runner/font/Pixeltype.ttf', 50)
 # 'Static' surface
 sky_surface = pygame.image.load('Runner/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('Runner/graphics/ground.png').convert()
+
 score_surface = score_font.render('RUNNER', False, (64, 64, 64))
 score_rect = score_surface.get_rect(center = (400, 50))
-
 
 # 'Dynamic ' Surface
 
@@ -24,6 +24,7 @@ snail_rect = snail_surface.get_rect(midbottom = (600,300))
 # Player
 player_surface = pygame.image.load('Runner/graphics/Player/player_walk_1.png').convert_alpha()
 player_rect = player_surface.get_rect(midbottom = (80,300))
+player_gravity = 0
 
 
 while True:
@@ -34,6 +35,10 @@ while True:
         # if event.type ==  pygame.MOUSEMOTION:
         #     if player_rect.collidepoint(event.pos):
         #         print('Collision!')
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player_gravity = -20
+        
                  
 
             
@@ -57,12 +62,14 @@ while True:
     screen.blit(snail_surface, snail_rect)
 
     # Drawing the player
+    player_gravity += 1
+    player_rect.y += player_gravity
     screen.blit(player_surface, player_rect)
 
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_SPACE]:
-        print('jump')
+    # keys = pygame.key.get_pressed()
+    # if keys[pygame.K_SPACE]:
+    #     print('jump')
 
 
     # Checking if a collison has indeed occured 
