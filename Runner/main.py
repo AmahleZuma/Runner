@@ -1,6 +1,12 @@
 import pygame
 from sys import exit
 
+def display_score():
+    current_time = int(pygame.time.get_ticks()/1000) - start_time
+    score_surface = score_font.render(str(current_time), False, (64, 64, 64))
+    score_rect = score_surface.get_rect(center = (400, 50))
+    screen.blit(score_surface, score_rect)
+
 # Switching pygame on
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
@@ -8,14 +14,15 @@ pygame.display.set_caption('Runner')
 clock = pygame.time.Clock()
 score_font = pygame.font.Font('Runner/font/Pixeltype.ttf', 50)
 game_active = True
+start_time = 0
 
 # 'Static' surface
 sky_surface = pygame.image.load('Runner/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('Runner/graphics/ground.png').convert()
 
 # Score Surface
-score_surface = score_font.render('RUNNER', False, (64, 64, 64))
-score_rect = score_surface.get_rect(center = (400, 50))
+# score_surface = score_font.render('RUNNER', False, (64, 64, 64))
+# score_rect = score_surface.get_rect(center = (400, 50))
 
 # Restart Surface
 restart_surface = score_font.render('PRESS SPACE TO RESTART', False, (250, 250, 250))
@@ -45,6 +52,7 @@ while True:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                       game_active = True
                       snail_rect.left = 800 
+                      start_time = int(pygame.time.get_ticks()/1000)
 
     if game_active:
         #Block Image Transfer...one image on another        
@@ -54,10 +62,10 @@ while True:
         screen.blit(ground_surface,(0,300))
 
         # Adding a background pad
-        pygame.draw.rect(screen, '#c0e8ec', score_rect)
-        pygame.draw.rect(screen, '#c0e8ec', score_rect, 10)
-
-        screen.blit(score_surface, score_rect)
+        # pygame.draw.rect(screen, '#c0e8ec', score_rect)
+        # pygame.draw.rect(screen, '#c0e8ec', score_rect, 10)
+        # screen.blit(score_surface, score_rect)
+        display_score()
 
         # Drawing the snail and using geometric tricks to give it a looping effect
         snail_rect.left -= 4
