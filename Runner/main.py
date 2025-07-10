@@ -7,6 +7,8 @@ def display_score():
     score_rect = score_surface.get_rect(center = (400, 50))
     screen.blit(score_surface, score_rect)
 
+# class is supposed to be here
+
 # Switching pygame on
 pygame.init()
 screen = pygame.display.set_mode((800, 400))
